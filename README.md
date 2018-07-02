@@ -1,21 +1,10 @@
-# cnode-project
+## helloCNODE
+> 学习 Vue 2.0 写的第一个小项目，使用 CNodejs 社区提供的 API。
 
-> A Vue.js project for cnode 
+## 技术栈
+- Vue 2.x
+- Vue-router
+- Vue-CLI
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## DEMO
+[https://code661.github.io/helloCNODE/#/](https://code661.github.io/helloCNODE/#/)
