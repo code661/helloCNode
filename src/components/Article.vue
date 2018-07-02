@@ -1,31 +1,40 @@
 <template>
-  <div class="main">
-    <div class="header">
+  <div class="article main">
+    <div class="post_header">
       <p class="topic_title">{{ post.title}}</p>
       <div class="changes">
-        <span>发布于{{post.create_at | formatDate}}</span>
-        <span>作者 {{ post.author.loginname}}</span>
-        <span>{{ post.visit_count}}次浏览</span>
-        <span>来自{{post| formatTab}}</span>
+        <span>发布于 {{post.create_at | formatDate}} </span>
+        <span>作者 {{ post.author.loginname}} </span>
+        <span> {{ post.visit_count}} 次浏览</span>
+        <span>来自 {{post| formatTab}} </span>
       </div>
     </div>
     <div class="content" v-html="post.content"></div>
     <div class="replylist">
+      <div class="header">{{post.replies.length}} 条回复</div>
       <ul>
-        <li v-for="(reply,index) in post.replies">
-          <router-link :to="{
-            name:'user_info',
-            params:{
-              'username' :reply.author.loginname
-            }
-          }">
-            <img :src="reply.author.avatar_url" alt="">
-          </router-link>
-          <span>{{ reply.author.loginname}}</span>
-          <span>{{ index + 1}}楼</span>
-          <span>{{reply.create_at | formatDate}}</span>
-          <span>{{reply.ups.length}}个👍</span>
-          <p v-html="reply.content"></p>
+        <li class="reply-item" v-for="(reply,index) in post.replies">
+          <div class="author_content">
+            <router-link :to="{
+              name:'user_info',
+              params:{
+                'username' :reply.author.loginname
+              }
+            }">
+              <img :src="reply.author.avatar_url" alt="">
+            </router-link>
+            <router-link :to="{
+              name:'user_info',
+              params:{
+                'username' :reply.author.loginname
+              }
+            }">
+              <span>{{ reply.author.loginname}}</span>
+            </router-link>
+            <span class="reply_time">{{ index + 1}}楼•{{reply.create_at | formatDate}}</span>
+            <span class="up-count">👍 {{reply.ups.length}}</span>
+          </div>
+          <div v-html="reply.content"></div>
         </li>
       </ul>
     </div>
@@ -62,5 +71,99 @@ export default {
 
 <style >
 @import url('../assets/markdown-github.css');
+
+.article {
+  float: left;
+}
+
+.main {
+  width: 800px;
+  margin-left: 100px;
+  margin-top: 30px;
+  
+}
+
+.post_header{
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 10px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+  border-radius: 4px 4px 0 0;
+}
+.post_header > .topic_title {
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.post_header > .changes {
+  color: #838383;
+  font-size: 12px;
+}
+.changes > span::before {
+  content: "• "
+}
+
+.content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 0 0 4px 4px;
+}
+.replylist {
+  margin-top: 18px;
+  background-color: #fff;
+  border-radius: 4px 4px 0 0;
+}
+.replylist > .header {
+  background-color: #f6f6f6;
+  padding: 10px 0;
+  border-radius: 4px 4px 0 0;
+  color: #444;
+  font-size: 13px;
+  padding-left: 18px;
+}
+
+.reply-item {
+  border-top: 1px solid #f0f0f0;
+  padding: 18px;
+  list-style: none;
+  position: relative;
+}
+.author_content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.author_content img {
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  margin-right: 13px;
+}
+
+.author_content a {
+  text-decoration-line: none;
+  font-weight: 900;
+  color: #333;
+  font-size: 12px;
+}
+
+.author_content > .reply_time {
+  color: #08c;
+  font-size: 12px;
+}
+.author_content > span {
+  margin-left: 8px;
+}
+.author_content > .up-count{
+  font-size: 12px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  color: gray;
+}
+
+
+
 </style>
 

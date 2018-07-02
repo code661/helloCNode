@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app clearfix">
     <navbar></navbar>
     <router-view name="main"></router-view>
     <router-view name="sidebar"></router-view>
@@ -24,4 +24,10 @@ export default {
   body {
     background-color:#e1e1e1;
   }
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear:both;
+  }
+  
 </style>
