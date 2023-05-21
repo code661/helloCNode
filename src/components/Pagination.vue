@@ -1,14 +1,12 @@
 <template>
-<div class="pagination">
-  <button @click="changeBtn">首页</button>
-  <button @click="changeBtn">上一页</button>
-  <button :class="[{'currentPage':currentPage == page}, 'pagebtn']"
-  v-for="page in pageBtn"
-  @click="changeBtn(page)">
-    {{ page }}
-  </button>
-  <button @click="changeBtn">下一页</button>
-</div>
+  <div class="pagination">
+    <button @click="changeBtn">首页</button>
+    <button @click="changeBtn">上一页</button>
+    <button :class="[{ 'currentPage': currentPage == page }, 'pagebtn']" v-for="page in pageBtn" @click="changeBtn(page)">
+      {{ page }}
+    </button>
+    <button @click="changeBtn">下一页</button>
+  </div>
 </template>
 
 <script>
@@ -61,8 +59,9 @@ export default {
   background-color: white;
   padding: 6px 20px;
   border-radius: 5px;
-  border: 1px solid #888888;
+  border: 1px solid #c8c8c8;
 }
+
 button {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -74,10 +73,12 @@ button {
   height: 29px;
   vertical-align: middle;
 }
+
 .pagebtn {
   width: 40px;
   margin: 0 4px;
 }
+
 button:hover,
 .currentPage {
   color: white;
